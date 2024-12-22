@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const rightPanels = document.querySelectorAll('.panel-right');
     const menuOverlay = document.querySelector('.menu-overlay');
     const menuCloseBtn = document.querySelector('.menu-close-btn');
+    const navLinks = document.querySelectorAll('.sidebar-nav .nav-link');
     
     let currentPanel = 0;
     let isTransitioning = false;
@@ -47,6 +48,27 @@ document.addEventListener('DOMContentLoaded', () => {
             isSidebarOpen = false;
             sidebar.classList.remove('active');
         }
+    });
+
+    // Navigation functionality
+    navLinks.forEach((link, index) => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (isTransitioning) return;
+            
+            isTransitioning = true;
+            currentPanel = index;
+            updatePanels();
+            
+            // Close sidebar
+            isSidebarOpen = false;
+            sidebar.classList.remove('active');
+            
+            // Reset transition lock after animation completes
+            setTimeout(() => {
+                isTransitioning = false;
+            }, 300);
+        });
     });
 
     // Close menu when close button is clicked
