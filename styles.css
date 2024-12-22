@@ -9,6 +9,14 @@ html, body {
     overflow: hidden;
 }
 
+@media (max-width: 768px) {
+    html, body {
+        height: auto;
+        overflow-y: auto !important;
+        overflow-x: hidden;
+    }
+}
+
 body.container {
     height: 100vh;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -16,6 +24,13 @@ body.container {
     margin: 0;
     padding: 0;
     position: relative;
+}
+
+@media (max-width: 768px) {
+    body.container {
+        height: auto;
+        min-height: 100vh;
+    }
 }
 
 .panel {
@@ -36,7 +51,7 @@ body.container {
 }
 
 .panel-left {
-    width: 50%;
+    width: 50vw;
     height: 100%;
     overflow: hidden;
     background: #000;
@@ -50,7 +65,7 @@ body.container {
 }
 
 .panel-right {
-    width: 50%;
+    width: 50vw;
     height: 100%;
     display: flex;
     align-items: center;
@@ -61,19 +76,61 @@ body.container {
 
 .content {
     max-width: 80%;
+    margin: 0 auto;
 }
 
 h1, h2 {
-    font-size: 2.5rem;
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
     margin-bottom: 1.5rem;
     font-weight: 500;
     transition: color 0.3s ease;
 }
 
 p {
-    font-size: 1.1rem;
+    font-size: clamp(1rem, 2vw, 1.1rem);
     line-height: 1.6;
     transition: color 0.3s ease;
+}
+
+@media (max-width: 768px) {
+    .panel {
+        position: relative;
+        height: auto;
+        min-height: 100vh;
+        flex-direction: column;
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .panel-left, .panel-right {
+        width: 100%;
+        min-height: 50vh;
+    }
+
+    .panel-right {
+        padding: 3rem 1rem;
+    }
+
+    .content {
+        max-width: 90%;
+        padding: 1rem 0;
+        margin: 0 auto;
+    }
+
+    h1, h2 {
+        font-size: clamp(1.5rem, 6vw, 2rem);
+        margin-bottom: 1rem;
+    }
+
+    p {
+        font-size: clamp(0.9rem, 4vw, 1rem);
+    }
+
+    nav {
+        position: fixed;
+        bottom: 1rem;
+        right: 1rem;
+    }
 }
 
 .panel-right[style*="background: rgb(38, 38, 38)"] h1,
