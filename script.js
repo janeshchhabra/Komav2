@@ -17,17 +17,17 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Update right panel colors
+        // Update right panel colors - alternate between dark and light
         rightPanels.forEach((panel, index) => {
-            if (index === 1) {
+            if (index % 2 === 1) { // Odd panels (1, 3, etc) are light
                 panel.style.background = '#D9D9D9';
-            } else {
+            } else { // Even panels (0, 2, etc) are dark
                 panel.style.background = '#262626';
             }
         });
 
-        // Update menu colors
-        if (currentPanel === 1) {
+        // Update menu colors based on current panel
+        if (currentPanel % 2 === 1) { // Odd panels have dark menu
             menuText.style.color = '#000';
             menuIcon.style.borderColor = '#000';
             circle.style.background = '#000';
@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (isTransitioning) return;
         
         const delta = event.deltaY;
-        if (Math.abs(delta) < 50) return; // Threshold to prevent small scroll triggers
+        if (Math.abs(delta) < 25) return; // Threshold to prevent small scroll triggers
         
         isTransitioning = true;
         
@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Reset transition lock after animation completes
         setTimeout(() => {
             isTransitioning = false;
-        }, 500); // Match this with CSS transition duration
+        }, 300); // Match this with CSS transition duration
     }
 
     // Handle wheel events for panel transitions
