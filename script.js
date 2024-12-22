@@ -67,8 +67,8 @@ document.addEventListener('DOMContentLoaded', () => {
         panels.forEach((panel, index) => {
             if (index === currentPanel) {
                 panel.classList.add('active');
-                // Start animation if it's the about panel (last panel)
-                if (index === panels.length - 1) {
+                // Start animation if it's the about panel (panel with about images)
+                if (panel.querySelector('#aboutImage1')) {
                     startAboutAnimation();
                 } else {
                     stopAboutAnimation();
