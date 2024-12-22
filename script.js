@@ -7,11 +7,72 @@ document.addEventListener('DOMContentLoaded', () => {
     
     let currentPanel = 0;
     let isTransitioning = false;
+    let aboutImageInterval;
+
+    // About panel elements
+    const aboutImage1 = document.getElementById('aboutImage1');
+    const aboutImage2 = document.getElementById('aboutImage2');
+    const joshText = document.getElementById('joshText');
+    const kieranText = document.getElementById('kieranText');
+    let isFirstImage = true;
+
+    function startAboutAnimation() {
+        if (aboutImageInterval) clearInterval(aboutImageInterval);
+        
+        // Reset initial state
+        aboutImage1.style.display = 'block';
+        aboutImage2.style.display = 'none';
+        joshText.classList.add('text-white');
+        kieranText.classList.add('text-gray');
+        isFirstImage = true;
+
+        aboutImageInterval = setInterval(() => {
+            if (isFirstImage) {
+                // Transition to second image
+                aboutImage1.classList.add('fade');
+                setTimeout(() => {
+                    aboutImage1.style.display = 'none';
+                    aboutImage2.style.display = 'block';
+                    aboutImage2.classList.remove('fade');
+                }, 300);
+                joshText.classList.remove('text-white');
+                joshText.classList.add('text-gray');
+                kieranText.classList.remove('text-gray');
+                kieranText.classList.add('text-white');
+            } else {
+                // Transition to first image
+                aboutImage2.classList.add('fade');
+                setTimeout(() => {
+                    aboutImage2.style.display = 'none';
+                    aboutImage1.style.display = 'block';
+                    aboutImage1.classList.remove('fade');
+                }, 300);
+                joshText.classList.remove('text-gray');
+                joshText.classList.add('text-white');
+                kieranText.classList.remove('text-white');
+                kieranText.classList.add('text-gray');
+            }
+            isFirstImage = !isFirstImage;
+        }, 3000);
+    }
+
+    function stopAboutAnimation() {
+        if (aboutImageInterval) {
+            clearInterval(aboutImageInterval);
+            aboutImageInterval = null;
+        }
+    }
 
     function updatePanels() {
         panels.forEach((panel, index) => {
             if (index === currentPanel) {
                 panel.classList.add('active');
+                // Start animation if it's the about panel (last panel)
+                if (index === panels.length - 1) {
+                    startAboutAnimation();
+                } else {
+                    stopAboutAnimation();
+                }
             } else {
                 panel.classList.remove('active');
             }
