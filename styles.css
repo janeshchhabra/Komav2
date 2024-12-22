@@ -94,36 +94,46 @@ p {
 
 @media (max-width: 768px) {
     .panel {
-        position: relative;
-        height: auto;
-        min-height: 100vh;
+        position: absolute;
+        height: 100vh;
         flex-direction: column;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.5s ease;
+    }
+
+    .panel.active {
         opacity: 1;
         pointer-events: auto;
     }
 
     .panel-left, .panel-right {
         width: 100%;
-        min-height: 50vh;
+        height: 50vh;
+        min-height: unset;
     }
 
     .panel-right {
-        padding: 3rem 1rem;
+        padding: 1.5rem 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     .content {
         max-width: 90%;
-        padding: 1rem 0;
+        padding: 0;
         margin: 0 auto;
     }
 
     h1, h2 {
-        font-size: clamp(1.5rem, 6vw, 2rem);
-        margin-bottom: 1rem;
+        font-size: clamp(1.5rem, 5vw, 1.8rem);
+        margin-bottom: 0.75rem;
     }
 
     p {
-        font-size: clamp(0.9rem, 4vw, 1rem);
+        font-size: clamp(0.9rem, 3.5vw, 1rem);
+        line-height: 1.4;
     }
 
     nav {
@@ -185,7 +195,6 @@ nav {
 }
 
 .menu-icon {
-    transition: border-color 0.3s ease;
 }
 
 .circle {
