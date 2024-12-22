@@ -1,13 +1,69 @@
 document.addEventListener('DOMContentLoaded', () => {
     const menuText = document.querySelector('.menu-text');
     const menuIcon = document.querySelector('.menu-icon');
-    const circle = document.querySelector('.circle');
+    const circle = document.querySelector('.menu-k');
+    const insta = document.querySelector('.instagram-icon i');
     const panels = document.querySelectorAll('.panel');
     const rightPanels = document.querySelectorAll('.panel-right');
+    const menuOverlay = document.querySelector('.menu-overlay');
+    const menuCloseBtn = document.querySelector('.menu-close-btn');
     
     let currentPanel = 0;
     let isTransitioning = false;
     let aboutImageInterval;
+    let isMenuOpen = false;
+
+    const hamburgerIcon = document.querySelector('.hamburger-icon');
+    const sidebar = document.querySelector('.sidebar');
+    const sidebarCloseBtn = document.querySelector('.sidebar-close');
+    let isSidebarOpen = false;
+
+    // Menu toggle functionality (K icon)
+    menuIcon.addEventListener('click', (e) => {
+        if (e.target.closest('.hamburger-icon') || e.target.closest('.instagram-icon')) {
+            return; // Don't trigger menu if clicking hamburger or instagram icon
+        }
+        isMenuOpen = !isMenuOpen;
+        menuOverlay.classList.toggle('active', isMenuOpen);
+    });
+
+    // Sidebar toggle functionality (hamburger icon)
+    hamburgerIcon.addEventListener('click', () => {
+        isSidebarOpen = !isSidebarOpen;
+        sidebar.classList.toggle('active', isSidebarOpen);
+    });
+
+    // Close sidebar when close button is clicked
+    sidebarCloseBtn.addEventListener('click', () => {
+        isSidebarOpen = false;
+        sidebar.classList.remove('active');
+    });
+
+    // Close sidebar when clicking outside
+    document.addEventListener('click', (e) => {
+        if (isSidebarOpen && 
+            !sidebar.contains(e.target) && 
+            !hamburgerIcon.contains(e.target)) {
+            isSidebarOpen = false;
+            sidebar.classList.remove('active');
+        }
+    });
+
+    // Close menu when close button is clicked
+    menuCloseBtn.addEventListener('click', () => {
+        isMenuOpen = false;
+        menuOverlay.classList.remove('active');
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (isMenuOpen && 
+            !menuOverlay.contains(e.target) && 
+            !menuIcon.contains(e.target)) {
+            isMenuOpen = false;
+            menuOverlay.classList.remove('active');
+        }
+    });
 
     // About panel elements
     const aboutImage1 = document.getElementById('aboutImage1');
@@ -91,11 +147,13 @@ document.addEventListener('DOMContentLoaded', () => {
         if (currentPanel % 2 === 1) { // Odd panels have dark menu
             menuText.style.color = '#000';
             menuIcon.style.borderColor = '#000';
-            circle.style.background = '#000';
+            circle.style.color = '#000';
+            insta.style.color = '#000';
         } else {
             menuText.style.color = '#fff';
             menuIcon.style.borderColor = '#fff';
-            circle.style.background = '#fff';
+            circle.style.color = '#fff';
+            insta.style.color = '#fff';
         }
     }
 

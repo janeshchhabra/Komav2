@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KOMAKASE</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sacramento&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body class="container">
@@ -118,9 +119,46 @@
     <nav>
         <span class="menu-text">menu</span>
         <div class="menu-icon">
-            <div class="circle"></div>
+            <span class="menu-k">K</span>
+            <div class="hamburger-icon">
+                <span></span>
+                <span></span>
+            </div>
+            <a href="https://www.instagram.com/komakase.sf/" target="_blank" class="instagram-icon">
+                <i class="fab fa-instagram"></i>
+            </a>
         </div>
     </nav>
+
+    <div class="sidebar">
+        <button class="sidebar-close">&times;</button>
+        <nav class="sidebar-nav">
+            <a href="#" class="nav-link">home</a>
+            <a href="#" class="nav-link">about</a>
+            <a href="#" class="nav-link">offerings</a>
+            <a href="#" class="nav-link">menu</a>
+            <a href="#" class="nav-link">reviews</a>
+            <a href="#" class="nav-link">location</a>
+        </nav>
+    </div>
+
+    <div class="menu-overlay">
+        <div class="menu-image-panel">
+            <img src="img/cocktail.jpeg" alt="Menu Background">
+        </div>
+    <div class="menu-content-panel">
+        <h4>Sample Menu</h4>
+        <div class="menu-items">
+                <a href="#" class="menu-item">pour overs</a>
+                <a href="#" class="menu-item">coffee mocktails</a>
+                <a href="#" class="menu-item">spritz</a>
+                <a href="#" class="menu-item">espresso</a>
+                <a href="#" class="menu-item">edible palate cleansers</a>
+            </div>
+        <button class="menu-close-btn">&times;</button>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>

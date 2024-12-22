@@ -354,20 +354,83 @@ nav {
 
 .menu-icon {
     width: 40px;
-    height: 40px;
+    height: 62.22px;
+    transform: rotate(25deg);
     border: 1px solid #000;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    position: relative;
 }
 
-.circle {
-    width: 5px;
-    height: 5px;
-    background: #000;
+.hamburger-icon {
+    position: absolute;
+    top: -65px;
+    right: 45px;
+    width: 20px;
+    height: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transform: rotate(-25deg);
+    cursor: pointer;
+}
+
+.hamburger-icon span {
+    display: block;
+    width: 100%;
+    height: 1px;
+    background-color: #fff;
+    transition: background-color 0.3s ease;
+}
+
+/* Update hamburger color based on panel */
+.panel.active:nth-child(odd) ~ nav .hamburger-icon span {
+    background-color: #fff;
+}
+
+.panel.active:nth-child(even) ~ nav .hamburger-icon span {
+    background-color: #000;
+}
+
+.hamburger-icon:hover span {
+    opacity: 0.7;
+}
+
+.instagram-icon {
+    position: absolute;
+    top: -45px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: rotate(-25deg);
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.instagram-icon i {
+    color: white;
+    font-size: 25px;
+}
+
+.instagram-icon:hover {
+    background: #333;
+}
+
+.menu-k {
+    font-family: 'SantaCatalina';
+    font-size: 2.5rem;
+    color: #000;
+    transform: rotate(-25deg);
+    display: block;
+    position: relative;
+    top: -2px;
 }
 
 /* Initial menu state */
@@ -377,10 +440,6 @@ nav {
 
 .menu-icon {
     transition: border-color 0.3s ease;
-}
-
-.circle {
-    transition: background-color 0.3s ease;
 }
 
 /* Testimonial styles */
@@ -501,4 +560,353 @@ nav {
 .panel-right[style*="background: rgb(217, 217, 217)"] .submit-btn:hover {
     background: #1A1A1A;
     color: #fff;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 300px;
+    height: 100vh;
+    background: rgba(38, 38, 38, 0.65);
+    backdrop-filter: blur(10px);
+    z-index: 2000;
+    transition: right 0.3s ease, background 0.3s ease;
+    padding: 4rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transform: translateX(0); /* Force GPU acceleration */
+    overflow: hidden;
+}
+
+.sidebar::before {
+    content: 'K';
+    font-family: 'SantaCatalina';
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 5rem;
+    color: #fff;
+    z-index: 2;
+    transition: color 0.3s ease;
+}
+
+.sidebar::after {
+    content: '';
+    position: absolute;
+    width: 100px;
+    height: 155px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    top: 15%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(25deg);
+    z-index: 1;
+    transition: border-color 0.3s ease;
+}
+
+/* Light theme oval k */
+.panel.active:nth-child(even) ~ .sidebar::before {
+    color: #1A1A1A;
+}
+
+.panel.active:nth-child(even) ~ .sidebar::after {
+    border-color: #1A1A1A;
+}
+
+/* Dark theme oval k */
+.panel.active:nth-child(odd) ~ .sidebar::before {
+    color: #fff;
+}
+
+.panel.active:nth-child(odd) ~ .sidebar::after {
+    border-color: #fff;
+}
+
+/* Light theme sidebar */
+.panel.active:nth-child(even) ~ .sidebar {
+    background: rgba(255, 255, 255, 0.65);
+}
+
+/* Dark theme sidebar */
+.panel.active:nth-child(odd) ~ .sidebar {
+    background: rgba(38, 38, 38, 0.65);
+}
+
+.sidebar.active {
+    right: 0;
+}
+
+.sidebar-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 2rem;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.3s ease, color 0.3s ease;
+}
+
+/* Light theme close button */
+.panel.active:nth-child(even) ~ .sidebar .sidebar-close {
+    color: #1A1A1A;
+}
+
+/* Dark theme close button */
+.panel.active:nth-child(odd) ~ .sidebar .sidebar-close {
+    color: #fff;
+}
+
+.sidebar-close:hover {
+    opacity: 0.7;
+}
+
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 8rem;
+}
+
+.nav-link {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: opacity 0.3s ease, color 0.3s ease;
+}
+
+/* Light theme nav links */
+.panel.active:nth-child(even) ~ .sidebar .nav-link {
+    color: #1A1A1A;
+}
+
+/* Dark theme nav links */
+.panel.active:nth-child(odd) ~ .sidebar .nav-link {
+    color: #fff;
+}
+
+.nav-link:hover {
+    opacity: 0.7;
+}
+
+.email-signup {
+    margin-bottom: 2rem;
+}
+
+.email-input {
+    width: 100%;
+    padding: 0.8rem;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+    color: #fff;
+    margin-bottom: 1rem;
+}
+
+.email-input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+    transition: color 0.3s ease;
+}
+
+/* Light theme placeholder */
+.panel.active:nth-child(even) ~ .sidebar .email-input::placeholder {
+    color: rgba(26, 26, 26, 0.5);
+}
+
+/* Dark theme placeholder */
+.panel.active:nth-child(odd) ~ .sidebar .email-input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.submit-button {
+    width: 100%;
+    padding: 0.8rem;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.submit-button:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Menu Overlay Styles */
+.menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 1000;
+}
+
+.menu-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.menu-image-panel {
+    width: 70%;
+    height: 100%;
+    background: #000;
+    overflow: hidden;
+}
+
+.menu-image-panel img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(100%);
+}
+
+.menu-content-panel {
+    width: 30%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(10px);
+    padding: 4rem 2rem;
+    position: relative;
+    color: #1A1A1A;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.menu-content-panel::before {
+    content: 'K';
+    font-family: 'SantaCatalina';
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 7rem;
+    color: #1A1A1A;
+    z-index: 2;
+}
+
+.menu-content-panel::after {
+    content: '';
+    position: absolute;
+    width: 140px;
+    height: 217px;
+    border: 3px solid #1A1A1A;
+    border-radius: 50%;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(25deg);
+    z-index: 1;
+}
+
+@media (max-width: 768px) {
+    .menu-content-panel::before,
+    .menu-content-panel::after {
+        display: none;
+    }
+}
+
+.menu-content-panel h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: #1A1A1A;
+}
+
+.menu-items {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    top: 5rem;
+    gap: 1rem;
+    z-index: 3;
+    padding: 0 2rem;
+}
+
+.menu-item {
+    font-size: 1.2rem;
+    color: #1A1A1A;
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+}
+
+.menu-item:hover {
+    opacity: 0.7;
+}
+
+.menu-close-btn {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    background: transparent;
+    border: none;
+    font-size: 2rem;
+    color: #1A1A1A;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.3s ease;
+}
+
+.menu-close-btn:hover {
+    opacity: 0.7;
+}
+
+@media (max-width: 768px) {
+    .sidebar::before,
+    .sidebar::after {
+        top: 20%;
+    }
+
+    .menu-overlay {
+        flex-direction: column;
+    }
+
+    .menu-items {
+        display: flex;
+        flex-direction: column;
+        position:relative;
+        top: 2rem;
+        gap: 1rem;
+    }    
+    
+    .menu-image-panel {
+        width: 100%;
+        height: 70%;
+    }
+    
+    .menu-content-panel {
+        width: 100%;
+        height: 30%;
+        padding: 2rem 1.5rem;
+        background: rgba(255, 255, 255, 0.65);
+        backdrop-filter: blur(10px);
+    }
+    
+    .menu-content-panel h2 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+    
+    .menu-item {
+        font-size: 1rem;
+    }
 }
