@@ -201,8 +201,52 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 300); // Match this with CSS transition duration
     }
 
+    // Touch handling variables
+    let touchStartY = 0;
+    let touchEndY = 0;
+    const minSwipeDistance = 50; // Minimum distance for a swipe
+
+    function handleTouchStart(event) {
+        touchStartY = event.touches[0].clientY;
+    }
+
+    function handleTouchMove(event) {
+        // Prevent default to stop page bounce on iOS
+        event.preventDefault();
+    }
+
+    function handleTouchEnd(event) {
+        if (isTransitioning) return;
+
+        touchEndY = event.changedTouches[0].clientY;
+        const swipeDistance = touchEndY - touchStartY;
+
+        if (Math.abs(swipeDistance) < minSwipeDistance) return;
+
+        isTransitioning = true;
+
+        if (swipeDistance < 0 && currentPanel < panels.length - 1) {
+            // Swipe up
+            currentPanel++;
+        } else if (swipeDistance > 0 && currentPanel > 0) {
+            // Swipe down
+            currentPanel--;
+        }
+
+        updatePanels();
+
+        setTimeout(() => {
+            isTransitioning = false;
+        }, 300);
+    }
+
     // Handle wheel events for panel transitions
     window.addEventListener('wheel', handleWheel, { passive: true });
+
+    // Handle touch events for mobile
+    window.addEventListener('touchstart', handleTouchStart, { passive: true });
+    window.addEventListener('touchmove', handleTouchMove, { passive: false });
+    window.addEventListener('touchend', handleTouchEnd, { passive: true });
 
     // Set initial state
     panels[0].classList.add('active');
