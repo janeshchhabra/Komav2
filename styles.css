@@ -4,6 +4,11 @@
     box-sizing: border-box;
 }
 
+@font-face {
+    font-family: SantaCatalina;
+    src: url("Santa\ Catalina1.otf") format("opentype");
+}
+
 html, body {
     height: 100%;
     overflow: hidden;
@@ -68,6 +73,72 @@ body.container {
     position: relative;
 }
 
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.oval {
+    width: 180px;
+    height: 280px;
+    border: 3px solid white;
+    border-radius: 50%;
+    position: absolute;
+    opacity: 0;
+    animation: fadeIn 1.2s ease forwards;
+    transform: rotate(25deg);
+    left: calc(50% - 200px);
+    top: calc(50% - 140px);
+}
+
+.logo-text {
+    font-family: 'SantaCatalina';
+    color: white;
+    font-size: 11rem;
+    position: relative;
+    margin: 0;
+    opacity: 0;
+    animation: fadeInText 1.5s ease forwards 0.8s;
+    transform: translateX(-10px);
+    letter-spacing: -0.02em;
+    left: 150px;
+}
+
+.logo-text::first-letter {
+    margin-right: 0.15em;
+    position: relative;
+    left: -20px;
+    top: -10px;
+}
+
+@keyframes fadeInText {
+    0% {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
 .about-image {
     opacity: 1;
     transition: opacity 0.3s ease;
@@ -92,6 +163,21 @@ body.container {
     margin: 0 auto;
 }
 
+.first-panel-content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-bottom: 4rem;
+}
+
+@media (max-width: 768px) {
+    .first-panel-content {
+        height: 60%;
+        padding-bottom: 1rem;
+    }
+}
+
 h1, h2 {
     font-size: clamp(1.8rem, 4vw, 2.5rem);
     margin-bottom: 1.5rem;
@@ -113,6 +199,10 @@ p {
     transition: color 0.3s ease;
 }
 
+.mobile-only {
+    display: none;
+}
+
 @media (max-width: 768px) {
     .panel {
         position: absolute;
@@ -121,6 +211,74 @@ p {
         opacity: 0;
         pointer-events: none;
         transition: opacity 0.35s ease;
+    }
+
+    .overlay {
+        display: none;
+    }
+
+    .mobile-only {
+        display: flex;
+        position: absolute;
+        height: 70vh;
+        width: 100%;
+        top: 0;
+        left: 0;
+        z-index: 2;
+        justify-content: center;
+        align-items: center;
+        pointer-events: none;
+    }
+
+    .mobile-only .oval {
+        opacity: 1;
+        animation: none;
+    }
+
+    .oval-k {
+        display: none;
+    }
+
+    .mobile-only .oval-k {
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(-25deg);
+        color: white;
+        font-family: 'SantaCatalina';
+        font-size: 7rem;
+        z-index: 3;
+    }
+
+    .mobile-only .logo-text {
+        opacity: 1;
+        transform: none;
+    }
+
+    .oval {
+        width: 140px;
+        height: 220px;
+        left: 50%;
+        top: 40%;
+        transform: translate(-50%, -50%) rotate(25deg);
+    }
+
+    .logo-text {
+        font-size: 6rem;
+        position: absolute;
+        width: 100%;
+        text-align: center;
+        left: 0;
+        top: 75%;
+        transform: translateY(-50%);
+    }
+
+    .logo-text::first-letter {
+        margin-right: 0.12em;
+        position: relative;
+        left: -8px;
+        top: -8px;
     }
 
     .panel.active {
