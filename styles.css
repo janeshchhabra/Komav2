@@ -12,8 +12,7 @@ html, body {
 @media (max-width: 768px) {
     html, body {
         height: auto;
-        overflow-y: auto !important;
-        overflow-x: hidden;
+        overflow: auto;
     }
 }
 
@@ -21,8 +20,6 @@ body.container {
     height: 100vh;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     background: #000;
-    margin: 0;
-    padding: 0;
     position: relative;
 }
 
@@ -205,6 +202,7 @@ nav {
 }
 
 .menu-icon {
+    transition: border-color 0.3s ease;
 }
 
 .circle {
@@ -228,16 +226,11 @@ nav {
 }
 
 /* About panel styles */
-.panel:last-child .content p {
-    margin-bottom: 1.5rem;
+.about-text {
+    margin-bottom: 2rem;
 }
 
-.panel:last-child .content p:nth-child(2) {
-    color: #666;
-}
-
-.panel:last-child .content p:last-child {
-    margin-top: 2rem;
+.about-text:last-child {
     margin-bottom: 0;
 }
 
