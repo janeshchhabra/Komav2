@@ -11,66 +11,202 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/styles.css">
 </head>
-<body class="min-h-screen">
-    <!-- Panel Container -->
-    <div class="flex min-h-screen">
-        <!-- Left Panel - Image -->
-        <div class="w-1/2 relative h-screen">
-            <img src="img/koma.jpeg" alt="Coffee preparation" 
-                 class="w-full h-full object-cover grayscale">
-            <!-- Oval Overlay -->
-            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 
-                        w-[400px] h-[400px] border-2 border-oval rounded-full"></div>
+<body>
+    <!-- Fixed Panels -->
+    <div class="fixed-panel left">
+        <img src="img/koma.jpeg" alt="Coffee preparation" class="panel-image grayscale" data-index="0">
+        <img src="img/koma.jpeg" alt="Coffee preparation" class="panel-image grayscale opacity-0" data-index="1">
+        <img src="img/glass.png" alt="Coffee preparation" class="panel-image grayscale opacity-0" data-index="2">
+        <img src="img/carafe.png" alt="Coffee preparation" class="panel-image grayscale opacity-0" data-index="3">
+        <img src="img/glass.png" alt="Coffee preparation" class="panel-image grayscale opacity-0" data-index="4">
+        <img src="img/josh.png" alt="Coffee preparation" class="panel-image grayscale opacity-0" data-index="5">
+        <img src="img/kieran.png" alt="Coffee preparation" class="panel-image grayscale opacity-0" data-index="6">
+        <img src="img/kieranserve.jpeg" alt="Coffee preparation" class="panel-image grayscale opacity-0" data-index="7">
+
+    </div>
+
+    <div class="fixed-panel right bg-transition" id="rightPanel"></div>
+
+    <!-- Side Menu -->
+    <div id="sideMenu" class="fixed top-0 right-0 w-1/4 h-full bg-[#262626]/30 backdrop-blur transform translate-x-full transition-transform duration-300 ease-in-out z-[60] flex flex-col justify-between p-12">
+        <!-- Navigation Links -->
+        <nav class="mt-24">
+            <ul class="space-y-8">
+                <li><a href="#concept" class="text-text-light font-anybody text-2xl hover:opacity-75">concept</a></li>
+                <li><a href="#offerings" class="text-text-light font-anybody text-2xl hover:opacity-75">offerings</a></li>
+                <li><a href="#menu" class="text-text-light font-anybody text-2xl hover:opacity-75">menu</a></li>
+                <li><a href="#subscribe" class="text-text-light font-anybody text-2xl hover:opacity-75">subscribe</a></li>
+                <li><a href="#about" class="text-text-light font-anybody text-2xl hover:opacity-75">about</a></li>
+                <li><a href="#location" class="text-text-light font-anybody text-2xl hover:opacity-75">location</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Social Links -->
+    <div class="fixed bottom-10 right-10 flex flex-col space-y-4 z-50">
+        <a href="https://instagram.com/komakasecoffee/" target="_blank" class="text-icon-light hover:opacity-75">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+        </a>
+        <a href="#" id="menuToggle" class="text-icon-light hover:opacity-75">
+            <!-- Hamburger Icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 menu-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <line x1="4" y1="8" x2="20" y2="8" stroke-width="2"/>
+                <line x1="4" y1="16" x2="20" y2="16" stroke-width="2"/>
+            </svg>
+            <!-- Close Icon (hidden by default) -->
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 close-icon hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </a>
+    </div>
+
+    <!-- Scroll Container -->
+    <div class="scroll-container">
+        <!-- First Section -->
+        <div id="concept" class="content-section flex">
+            <div class="w-1/2"></div> <!-- Spacer for fixed left panel -->
+            <div class="w-1/2 p-12 flex flex-col justify-center">
+                <!-- Reservation Link -->
+                <a href="#" class="absolute top-8 right-8 text-text-light font-anybody hover:opacity-75 flex items-center">
+                    make a reservation
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                </a>
+
+                <!-- Content -->
+                <div class="max-w-lg top-1/3 relative transform">
+                    <h1 class="text-[96px] font-santa text-text-light mb-16 pl-16 font-normal">Komakase</h1>
+                    <p class="text-text-light font-anybody text-base leading-relaxed pl-16">
+                        An intimate pop-up omakase experience, showcasing the finest specialty 
+                        coffees from around the world.
+                    </p>
+                </div>
+            </div>
         </div>
 
-        <!-- Right Panel - Dark Variant -->
-        <div class="w-1/2 bg-bg-dark relative p-12 flex flex-col justify-center">
-            <!-- Reservation Link -->
-            <a href="#" class="absolute top-8 right-8 text-text-light font-anybody hover:opacity-75 flex items-center">
-                make a reservation
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
-                </svg>
-            </a>
-
-            <!-- Content -->
-            <div class="max-w-lg absolute top-2/3 transform">
-                <h1 class="text-[96px] font-santa text-text-light mb-16 pl-16 font-normal">Komakase</h1>
-                <p class="text-text-light font-anybody text-base leading-relaxed pl-16">
-                    An intimate pop-up omakase experience, showcasing the finest specialty 
-                    coffees from around the world.
-                </p>
-            </div>
-
-            <!-- Social Links -->
-            <div class="fixed bottom-10 right-10 flex flex-col space-y-4 z-50">
-                <a href="#" class="text-icon-light hover:opacity-75">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                    </svg>
-                </a>
-                <a href="#" class="text-icon-light hover:opacity-75">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/>
-                    </svg>
-                </a>
+        <!-- Second Section -->
+        <div class="content-section flex">
+            <div class="w-1/2"></div> <!-- Spacer for fixed left panel -->
+            <div class="w-1/2 p-12 flex flex-col justify-center items-center">
+            <div class="text-center">
+                <p class="text-text-light font-anybody text-lg mb-4">As seen in</p>
+                <h2 class="text-text-light font-santa text-4xl">The San Francisco Chronicle</h2>
             </div>
         </div>
     </div>
 
-    <!-- Second Panel Container -->
-    <div class="flex min-h-screen">
-        <!-- Left Panel - Image -->
-        <div class="w-1/2 relative">
-            <img src="img/koma.jpeg" alt="Coffee preparation" 
-                 class="w-full h-full object-cover grayscale">
+    <!-- Third Section -->
+    <div id="offerings" class="content-section flex">
+        <div class="w-1/2"></div> <!-- Spacer for fixed left panel -->
+        <div class="w-1/2 p-12 flex flex-col justify-center">
+            <div class="max-w-lg">
+                <p class="text-[16px] font-anybody text-text-dark mb-8">Komakase: a journey through the world of coffee</p>
+                <p class="text-text-dark font-anybody text-base leading-relaxed">
+                    Indulge in our curated coffee flights, where we'll guide you through a selection of exceptional beans, 
+                    expertly brewed to highlight their individual characteristics. Each cup is a story waiting to be discovered.
+                </p>
+            </div>
         </div>
+    </div>
 
-        <!-- Right Panel - Dark Variant -->
-        <div class="w-1/2 bg-bg-dark relative p-12 flex flex-col justify-center items-center">
-            <div class="text-center">
-                <p class="text-text-light font-anybody text-lg mb-4">As seen in</p>
-                <h2 class="text-text-light font-santa text-4xl">San Francisco Chronicle</h2>
+    <!-- Fourth Section -->
+    <div id="menu" class="content-section flex">
+        <div class="w-1/2"></div> <!-- Spacer for fixed left panel -->
+        <div class="w-1/2 p-12 flex flex-col justify-center">
+            <div class="max-w-lg">
+                <h2 class="text-text-light font-anybody text-4xl mb-8">Choose from two unique tastings:</h2>
+                <div class="space-y-8">
+                    <div>
+                        <h3 class="text-text-light font-anybody text-xl mb-2">Omakase</h3>
+                        <p class="text-text-light font-anybody text-base leading-relaxed">
+                            A playful mix of pour-overs and creative coffee drinks, paired with small bites to keep things exciting.
+                        </p>
+                    </div>
+                    <div>
+                        <h3 class="text-text-light font-anybody text-xl mb-2">Coffee Spotlight</h3>
+                        <p class="text-text-light font-anybody text-base leading-relaxed">
+                            A deeper dive into coffee craftsmanship, featuring three pour-overs, a classic 1&1, and ending with a refreshing mocktail.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fifth Section -->
+    <div id="subscribe" class="content-section flex">
+        <div class="w-1/2"></div> <!-- Spacer for fixed left panel -->
+        <div class="w-1/2 p-12 flex flex-col justify-center">
+            <div class="max-w-lg">
+                <h2 class="text-text-dark font-anybody text-2xl mb-8">What People Have to Say</h2>
+                
+                <div class="mb-12">
+                    <p class="text-text-dark font-anybody text-xl mb-4">"I can't wait for the next event"</p>
+                    <p class="text-text-dark font-anybody text-lg">Jonathan F.</p>
+                </div>
+
+                <div class="mt-16">
+                    <h3 class="text-text-dark font-anybody text-xl mb-8">Be notified of upcoming bookings</h3>
+                    <form class="space-y-6">
+                        <div class="flex gap-4">
+                            <input type="text" placeholder="full name" class="w-1/2 bg-transparent border-b border-text-dark text-text-dark font-anybody placeholder-text-dark/50 pb-2 focus:outline-none">
+                            <input type="tel" placeholder="phone" class="w-1/2 bg-transparent border-b border-text-dark text-text-dark font-anybody placeholder-text-dark/50 pb-2 focus:outline-none">
+                        </div>
+                        <input type="email" placeholder="email address" class="w-full bg-transparent border-b border-text-dark text-text-dark font-anybody placeholder-text-dark/50 pb-2 focus:outline-none">
+                        <div class="flex justify-end mt-8">
+                            <button type="submit" class="text-text-dark font-anybody border border-text-dark rounded-full px-8 py-2 hover:bg-text-dark hover:text-bg-light transition-colors">
+                                submit
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sixth Section -->
+    <div id="about" class="content-section flex">
+        <div class="w-1/2"></div> <!-- Spacer for fixed left panel -->
+        <div class="w-1/2 p-12 flex flex-col justify-center">
+            <div class="max-w-lg">
+                <h2 class="text-text-light font-anybody text-2xl mb-8">About Us</h2>
+                <div class="space-y-6">
+                    <p class="text-text-light font-anybody text-base leading-relaxed">
+                        Komakase is led by a dynamic duo, Josh and Kieran.
+                    </p>
+                    <p id="josh-text" class="text-text-light font-anybody text-base leading-relaxed transition-colors duration-1000">
+                        Josh is a seasoned home coffee enthusiast, bringing years of experience and a deep appreciation for the art of coffee brewing.
+                    </p>
+                    <p id="kieran-text" class="text-text-light font-anybody text-base leading-relaxed transition-colors duration-1000">
+                        Kieran is a seasoned coffee professional, who offers a wealth of knowledge and expertise in the industry.
+                    </p>
+                    <p class="text-text-light font-anybody text-base leading-relaxed">
+                        Together, we're passionate about sharing our love for coffee and showcasing it's incredible range of flavors. We aim to create a unique coffee omakase experience for coffee lovers and the curious alike.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Seventh Section - Visit Us -->
+    <div id="location" class="content-section flex">
+        <div class="w-1/2"></div> <!-- Spacer for fixed left panel -->
+        <div class="w-1/2 p-12 flex flex-col justify-center">
+            <div class="max-w-lg">
+                <h2 class="text-text-dark font-anybody text-4xl mb-8">Visit Us</h2>
+                <div class="space-y-6">
+                    <p class="text-text-dark font-anybody text-xl leading-relaxed">
+                        Komakase<br>
+                        303 2nd St<br>
+                        San Francisco, CA 94107
+                    </p>
+                    <p class="text-text-dark font-anybody text-lg leading-relaxed mt-8">
+                        Hours on weekends, by reservation
+                    </p>
+                </div>
             </div>
         </div>
     </div>
